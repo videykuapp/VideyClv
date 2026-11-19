@@ -1,16 +1,16 @@
-name = "ourvidey-api"
+name = "videyclv-api"
 main = "src/index.js"
 compatibility_date = "2026-11-17"
 workers_dev = true
 
 [[r2_buckets]]
 binding = "VIDEOS_BUCKET"
-bucket_name = "ourvidey-videos"
+bucket_name = "videyclv-videos"
 
 [[d1_databases]]
 binding = "DB"
-database_name = "ourvidey-db"
-database_id = "af913a1b-28ec-4874-acdc-8e315d4b9ada"
+database_name = "videyclv-db"
+database_id = "5a33545c-449f-4289-9d40-3abc7fa97e47"
 
 [triggers]
 crons = ["*/15 * * * *"]
