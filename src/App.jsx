@@ -202,8 +202,7 @@ function VideoPage() {
   useEffect(() => {
     if (!video) return;
 
-    // Monetag scripts are intentionally loaded only on the video watch page.
-    // The homepage and upload page do not load video-page ad scripts.
+    // Existing Monetag video-page scripts.
     const zones = [
       { id: "12289038", src: "https://n6wxm.com/vignette.min.js" },
       { id: "12288957", src: "https://al5sm.com/tag.min.js" }
@@ -219,6 +218,24 @@ function VideoPage() {
       script.async = true;
       document.head.appendChild(script);
     });
+
+    // Adsterra 320x50 banner, loaded only on the video watch page.
+    const container = document.getElementById("videyclv-adsterra-banner");
+    if (!container || container.querySelector("script[data-videyclv-adsterra]")) return;
+
+    window.atOptions = {
+      key: "51d779400bdf21d91aa5cd99ad2e8937",
+      format: "iframe",
+      height: 50,
+      width: 320,
+      params: {}
+    };
+
+    const adScript = document.createElement("script");
+    adScript.dataset.videyclvAdsterra = "true";
+    adScript.src = "https://bauval.org/22/51d779400bdf21d91aa5cd99ad2e8937";
+    adScript.async = false;
+    container.appendChild(adScript);
   }, [video]);
 
   if (error) {
@@ -246,6 +263,18 @@ function VideoPage() {
           Your browser does not support video playback.
         </video>
       </div>
+
+      <div
+        id="videyclv-adsterra-banner"
+        aria-label="Advertisement"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          minHeight: "50px",
+          margin: "16px auto"
+        }}
+      />
 
       <h1>{video.title}</h1>
 
