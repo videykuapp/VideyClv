@@ -6,7 +6,7 @@ import {
   UploadCloud, Copy, ArrowLeft
 } from "lucide-react";
 
-const API_BASE = "https://videyclv-api.angelokasino2.workers.dev";
+const API_BASE = import.meta.env.VITE_API_BASE || "";
 const MAX_FILE_SIZE = 100 * 1024 * 1024;
 const ALLOWED_TYPES = ["video/mp4", "video/quicktime", "video/webm"];
 
@@ -14,7 +14,7 @@ function Header() {
   return (
     <header className="topbar">
       <Link className="brand" to="/">
-        VideyClv<span>.</span>
+        VideySp<span>.</span>
       </Link>
     </header>
   );
@@ -202,43 +202,23 @@ function VideoPage() {
   useEffect(() => {
     if (!video) return;
 
-    // Adsterra script 1.
-    if (!document.querySelector("script[data-videyclv-adsterra-main]")) {
-      const mainScript = document.createElement("script");
-      mainScript.dataset.cfasync = "false";
-      mainScript.dataset.videyclvAdsterraMain = "true";
-      mainScript.src = "https://abscloud.org/1/8f0462d967dd3ddb5891f81bc4e4b072";
-      document.head.appendChild(mainScript);
-    }
+    // Monetag scripts from the existing OurVidey setup.
+    // Loaded only on the video watch page.
+    const zones = [
+      { id: "12289038", src: "https://n6wxm.com/vignette.min.js" },
+      { id: "12288957", src: "https://al5sm.com/tag.min.js" }
+    ];
 
-    // Adsterra script 2, attached to its dedicated container.
-    const unitContainer = document.getElementById("container-76be86a3cc33018e329587eedde2d783");
-    if (unitContainer && !unitContainer.querySelector("script[data-videyclv-adsterra-unit]")) {
-      const unitScript = document.createElement("script");
-      unitScript.async = true;
-      unitScript.dataset.cfasync = "false";
-      unitScript.dataset.videyclvAdsterraUnit = "true";
-      unitScript.src = "https://bauval.org/21/76be86a3cc33018e329587eedde2d783";
-      unitContainer.appendChild(unitScript);
-    }
+    zones.forEach(({ id: zoneId, src }) => {
+      if (document.querySelector(`script[data-videysp-zone="${zoneId}"]`)) return;
 
-    // Adsterra 320x50 banner.
-    const bannerContainer = document.getElementById("videyclv-adsterra-banner");
-    if (bannerContainer && !bannerContainer.querySelector("script[data-videyclv-adsterra-banner]")) {
-      window.atOptions = {
-        key: "51d779400bdf21d91aa5cd99ad2e8937",
-        format: "iframe",
-        height: 50,
-        width: 320,
-        params: {}
-      };
-
-      const bannerScript = document.createElement("script");
-      bannerScript.dataset.videyclvAdsterraBanner = "true";
-      bannerScript.src = "https://bauval.org/22/51d779400bdf21d91aa5cd99ad2e8937";
-      bannerScript.async = false;
-      bannerContainer.appendChild(bannerScript);
-    }
+      const script = document.createElement("script");
+      script.dataset.zone = zoneId;
+      script.dataset.videyspZone = zoneId;
+      script.src = src;
+      script.async = true;
+      document.head.appendChild(script);
+    });
   }, [video]);
 
   if (error) {
@@ -323,7 +303,7 @@ export default function App() {
       </div>
 
       <footer>
-        © {new Date().getFullYear()} VideyClv. Upload and share responsibly.
+        © {new Date().getFullYear()} VideySp. Upload and share responsibly.
       </footer>
     </div>
   );
