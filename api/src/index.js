@@ -5,7 +5,7 @@ const ALLOWED_TYPES = [
   "video/webm"
 ];
 
-const ALLOWED_ORIGIN = "https://videysp.angelokasino2.workers.dev";
+const ALLOWED_ORIGIN = "https://videysp-4qi.pages.dev";
 
 function response(data, status = 200, origin = ALLOWED_ORIGIN) {
   return new Response(
