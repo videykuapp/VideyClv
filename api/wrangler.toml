@@ -1,0 +1,16 @@
+name = "ourvidey-api"
+main = "src/index.js"
+compatibility_date = "2026-11-17"
+workers_dev = true
+
+[[r2_buckets]]
+binding = "VIDEOS_BUCKET"
+bucket_name = "ourvidey-videos"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "ourvidey-db"
+database_id = "af913a1b-28ec-4874-acdc-8e315d4b9ada"
+
+[triggers]
+crons = ["*/15 * * * *"]
