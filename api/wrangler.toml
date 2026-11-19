@@ -10,7 +10,7 @@ bucket_name = "videysp-videos"
 [[d1_databases]]
 binding = "DB"
 database_name = "videysp-db"
-database_id = "REPLACE_WITH_VIDEYSP_D1_DATABASE_ID"
+database_id = "b34ef81d-a284-48ac-bd4b-d690592d1deb"
 
 [triggers]
 crons = ["*/15 * * * *"]
