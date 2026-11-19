@@ -6,7 +6,7 @@ import {
   UploadCloud, Copy, ArrowLeft
 } from "lucide-react";
 
-const API_BASE = import.meta.env.VITE_API_BASE || "";
+const API_BASE = "https://videyclv-api.angelokasino2.workers.dev";
 const MAX_FILE_SIZE = 100 * 1024 * 1024;
 const ALLOWED_TYPES = ["video/mp4", "video/quicktime", "video/webm"];
 
