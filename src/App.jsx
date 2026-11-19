@@ -14,7 +14,7 @@ function Header() {
   return (
     <header className="topbar">
       <Link className="brand" to="/">
-        OurVidey<span>.</span>
+        VideyClv<span>.</span>
       </Link>
     </header>
   );
@@ -210,11 +210,11 @@ function VideoPage() {
     ];
 
     zones.forEach(({ id: zoneId, src }) => {
-      if (document.querySelector(`script[data-ourvidey-zone="${zoneId}"]`)) return;
+      if (document.querySelector(`script[data-videyclv-zone="${zoneId}"]`)) return;
 
       const script = document.createElement("script");
       script.dataset.zone = zoneId;
-      script.dataset.ourvideyZone = zoneId;
+      script.dataset.videyclvZone = zoneId;
       script.src = src;
       script.async = true;
       document.head.appendChild(script);
@@ -286,7 +286,7 @@ export default function App() {
       </div>
 
       <footer>
-        © {new Date().getFullYear()} OurVidey. Upload and share responsibly.
+        © {new Date().getFullYear()} VideyClv. Upload and share responsibly.
       </footer>
     </div>
   );
