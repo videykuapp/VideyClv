@@ -199,28 +199,6 @@ function VideoPage() {
     };
   }, [id]);
 
-  useEffect(() => {
-    if (!video) return;
-
-    // Monetag scripts from the existing OurVidey setup.
-    // Loaded only on the video watch page.
-    const zones = [
-      { id: "12289038", src: "https://n6wxm.com/vignette.min.js" },
-      { id: "12288957", src: "https://al5sm.com/tag.min.js" }
-    ];
-
-    zones.forEach(({ id: zoneId, src }) => {
-      if (document.querySelector(`script[data-videysp-zone="${zoneId}"]`)) return;
-
-      const script = document.createElement("script");
-      script.dataset.zone = zoneId;
-      script.dataset.videyspZone = zoneId;
-      script.src = src;
-      script.async = true;
-      document.head.appendChild(script);
-    });
-  }, [video]);
-
   if (error) {
     return (
       <main className="narrow">
