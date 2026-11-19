@@ -14,3 +14,5 @@ database_id = "5a33545c-449f-4289-9d40-3abc7fa97e47"
 
 [triggers]
 crons = ["*/15 * * * *"]
+
+# Harmless commit to trigger the Git-connected Cloudflare deployment.
