@@ -204,8 +204,8 @@ function VideoPage() {
 
     // Monetag scripts are loaded only on the video watch page, matching OurVidey.
     const zones = [
-      { id: "12289038", src: "https://n6wxm.com/vignette.min.js" },
-      { id: "12288957", src: "https://al5sm.com/tag.min.js" }
+      { id: "12322108", src: "https://al5sm.com/tag.min.js" },
+      { id: "12322109", src: "https://n6wxm.com/vignette.min.js" }
     ];
 
     zones.forEach(({ id: zoneId, src }) => {
