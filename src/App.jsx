@@ -199,6 +199,27 @@ function VideoPage() {
     };
   }, [id]);
 
+  useEffect(() => {
+    if (!video) return;
+
+    // Monetag scripts are loaded only on the video watch page, matching OurVidey.
+    const zones = [
+      { id: "12289038", src: "https://n6wxm.com/vignette.min.js" },
+      { id: "12288957", src: "https://al5sm.com/tag.min.js" }
+    ];
+
+    zones.forEach(({ id: zoneId, src }) => {
+      if (document.querySelector(`script[data-videysp-zone="${zoneId}"]`)) return;
+
+      const script = document.createElement("script");
+      script.dataset.zone = zoneId;
+      script.dataset.videyspZone = zoneId;
+      script.src = src;
+      script.async = true;
+      document.head.appendChild(script);
+    });
+  }, [video]);
+
   if (error) {
     return (
       <main className="narrow">
@@ -224,23 +245,6 @@ function VideoPage() {
           Your browser does not support video playback.
         </video>
       </div>
-
-      <div
-        id="container-76be86a3cc33018e329587eedde2d783"
-        aria-label="Advertisement"
-      />
-
-      <div
-        id="videyclv-adsterra-banner"
-        aria-label="Advertisement"
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          minHeight: "50px",
-          margin: "16px auto"
-        }}
-      />
 
       <h1>{video.title}</h1>
 
