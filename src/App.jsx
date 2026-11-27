@@ -202,22 +202,17 @@ function VideoPage() {
   useEffect(() => {
     if (!video) return;
 
-    // Monetag scripts are loaded only on the video watch page, matching OurVidey.
-    const zones = [
-      { id: "12322108", src: "https://al5sm.com/tag.min.js" },
-      { id: "12322109", src: "https://n6wxm.com/vignette.min.js" }
-    ];
+    // Monetag MultiTag is loaded only on the video watch page.
+    // Replaces the two previous video-page Monetag tags to avoid duplication.
+    if (document.querySelector('script[data-videysp-multitag="316793"]')) return;
 
-    zones.forEach(({ id: zoneId, src }) => {
-      if (document.querySelector(`script[data-videysp-zone="${zoneId}"]`)) return;
-
-      const script = document.createElement("script");
-      script.dataset.zone = zoneId;
-      script.dataset.videyspZone = zoneId;
-      script.src = src;
-      script.async = true;
-      document.head.appendChild(script);
-    });
+    const script = document.createElement("script");
+    script.src = "https://quge5.com/88/tag.min.js";
+    script.dataset.zone = "316793";
+    script.dataset.cfasync = "false";
+    script.dataset.videyspMultitag = "316793";
+    script.async = true;
+    document.head.appendChild(script);
   }, [video]);
 
   if (error) {
